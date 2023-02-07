@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"math/cmplx"
+)
 
 // 定义包变量 不可以使用“:”
 var globalA = 1
@@ -35,6 +39,20 @@ func variableShorter() {
 	fmt.Println(a, b, c, d)
 }
 
+// 内建类型 复数 complex
+func euler() {
+	fmt.Println(
+		cmplx.Exp(1i*math.Pi)+1,
+		cmplx.Pow(math.E, 1i*math.Pi)+1)
+}
+
+// 强制类型转换
+func triangle() {
+	a, b := 3, 4
+	var c int
+	c = int(math.Sqrt(float64(a*a + b*b)))
+	println(c)
+}
 func main() {
 	fmt.Println("hello world!")
 	fmt.Println(globalA, aa, bb)
@@ -42,4 +60,6 @@ func main() {
 	variableInitValue()
 	variableTypeDeduction()
 	variableShorter()
+	euler()
+	triangle()
 }
