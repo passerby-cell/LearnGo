@@ -6,7 +6,7 @@ m1 := map[string]string{
     "version": "1.20",
 }
 //定义空Map
-m2 := make(map[string]int)  //m2 == empty map
+m2 := make(map[string]int)  //m2 == empty map 推荐
 var m3 map[string]int  //m3 == nil
 fmt.Println(m1)
 fmt.Println(m2)
