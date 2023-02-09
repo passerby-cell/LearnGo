@@ -28,6 +28,11 @@ func BenchmarkSubstr(b *testing.B) {
 	}{
 		"黑化肥挥发发灰会花飞化肥挥发发黑会飞花", 8,
 	}
+	for i := 0; i < 20; i++ {
+		test.s = test.s + test.s
+	}
+	b.Logf("len(test.s) = %d", len(test.s))
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		if got := lengthOfNoRepeatingSubString(test.s); got != test.want {
 			b.Errorf("lengthOfNoRepeatingSubString() = %v, want %v", got, test.want)

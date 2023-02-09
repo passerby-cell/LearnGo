@@ -48,3 +48,21 @@ func BenchmarkSubstr(b *testing.B) {
 ![](img/img_2.png)
 - 2073583：运行次数
 - 566.5 ns/op：每次耗时566.5 ns
+## 性能调优
+在命令行运行如下命令
+```go
+go test -bench . -cpuprofile cpu.out
+```
+![](img/img_3.png)
+
+出现如下文件
+
+![](img/img_4.png)
+在命令行运行如下命令
+```go
+go tool pprof cpu.out
+```
+![](img/img_5.png)
+在 https://graphviz.org/download/ 下载并安装，安装完成后在上图出现的命令行中输入`web`命令，则会出现下图：
+方框越大，线越粗，花时间越多。
+![](img/img_6.png)
