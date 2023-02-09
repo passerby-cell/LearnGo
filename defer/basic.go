@@ -13,13 +13,24 @@ func tryDefer() {
 	fmt.Println(3)
 }
 func writeFile(file string) {
-	f, err := os.Create(file)
+	f, err := os.OpenFile(file, os.O_EXCL|os.O_CREATE, 0666)
 	if err != nil {
-		panic(err)
+		fmt.Println("error creating file: ", err)
+		return
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		err := f.Close()
+		if err != nil {
+			fmt.Println("error closing file:", err)
+		}
+	}(f)
 	writer := bufio.NewWriter(f)
-	defer writer.Flush()
+	defer func(writer *bufio.Writer) {
+		err := writer.Flush()
+		if err != nil {
+			fmt.Println("error flushing file:", err)
+		}
+	}(writer)
 	fib := fib.Fibonacci()
 	for i := 0; i < 20; i++ {
 		fmt.Fprintln(writer, fib())
