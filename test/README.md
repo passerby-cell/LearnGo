@@ -24,6 +24,7 @@ func TestTriangle(t *testing.T) {
 ```
 ### 目录命名
 测试文件必须命名为<font style="background:red">xxx_test.go</font>。编译器会自动识别为测试文件。
+
 ![](img/img_1.png)
 ## 性能测试
 ```go
